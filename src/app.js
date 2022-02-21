@@ -1,6 +1,11 @@
 import {
   AddRemoveEditForm,
-  AddtoList, editTodos, removeCompleted, RemoveTodo, removeUnCompleted, setCompleted,
+  AddtoList,
+  editTodos,
+  removeCompleted,
+  RemoveTodo,
+  removeUnCompleted,
+  setCompleted,
 } from './js/controller/action';
 import RenderList from './js/controller/render-list';
 import { getFromStorage } from './js/controller/storage';
@@ -11,7 +16,7 @@ import './styles/style.css';
 
 let Todos = getFromStorage();
 let editInputForm = [];
-// checkbox addEventlistener
+
 const addEventListeners = () => {
   const checkboxs = selectMultipleDom('input.checkbox');
   const editButton = selectMultipleDom('div.three-dots');
@@ -70,7 +75,6 @@ const addEventListeners = () => {
   });
 };
 
-// handle submit
 const handleSubmit = (e) => {
   e.preventDefault();
   const todos = AddtoList(Input.value, Todos);
@@ -82,7 +86,6 @@ const handleSubmit = (e) => {
 RenderList(Todos, editInputForm);
 addEventListeners();
 
-// clear completed button
 btnClearCompleted.addEventListener('click', () => {
   const todos = removeCompleted(Todos);
   RenderList(todos, editInputForm);
@@ -90,7 +93,6 @@ btnClearCompleted.addEventListener('click', () => {
   Todos = todos;
 });
 
-// reset icon
 resetIcon.addEventListener('click', () => {
   const todos = removeUnCompleted(Todos);
   RenderList(todos, editInputForm);
